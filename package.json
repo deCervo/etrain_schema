@@ -1,0 +1,27 @@
+{
+  "name": "@decervo/etrain-schema",
+  "version": "0.1.0",
+  "description": "TypeScript declarations for the shared eTRAIN schema.",
+  "license": "UNLICENSED",
+  "author": "deCervo",
+  "main": "dist/index.js",
+  "types": "dist/etrain-schema.d.ts",
+  "files": [
+    "dist"
+  ],
+  "keywords": [
+    "etrain",
+    "schema",
+    "typescript",
+    "pydantic"
+  ],
+  "scripts": {
+    "build:ts": "python -m etrain_schema.tools.generate_ts --out dist/etrain-schema.d.ts"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/deCervo/etrain-ionic.git",
+    "directory": "etrain_schema"
+  },
+  "sideEffects": false
+}
