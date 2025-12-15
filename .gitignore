@@ -13,3 +13,5 @@ coverage/
 typings/
 typescript/*.ts
 typescript/*.d.ts
+eb-etrain-schema
+eb-etrain-schema.pub
