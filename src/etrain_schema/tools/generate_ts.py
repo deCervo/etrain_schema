@@ -13,10 +13,13 @@ from typing import Any, ForwardRef, Iterable, Sequence, Type, get_args, get_orig
 from pydantic import BaseModel
 
 from .. import classroom_summary as classroom_summary_module
+from .. import learning_progress as learning_progress_module
 from .. import training_summary as training_summary_module
 from ..department import analysis as department_analysis_module
+from ..department import graded as department_graded_module
 from ..department import report as department_report_module
 from ..user_summary import analysis as user_summary_analysis_module
+from ..user_summary import graded as user_summary_graded_module
 from ..user_summary import report as user_summary_report_module
 
 _DEFAULT_OUTPUT = Path("typescript/etrain-schema.d.ts")
@@ -25,8 +28,11 @@ _MODULES = [
     classroom_summary_module,
     training_summary_module,
     department_analysis_module,
+    department_graded_module,
     department_report_module,
+    learning_progress_module,
     user_summary_analysis_module,
+    user_summary_graded_module,
     user_summary_report_module,
 ]
 

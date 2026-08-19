@@ -4,7 +4,7 @@ build-backend = "hatchling.build"
 
 [project]
 name = "etrain-schema"
-version = "0.1.0"
+version = "0.2.0"
 description = "Shared Pydantic schemas for eTRAIN services and clients."
 readme = "README.md"
 requires-python = ">=3.10"
@@ -35,4 +35,3 @@ etrain-schema-ts = "etrain_schema.tools.generate_ts:cli"
 
 [tool.hatch.build.targets.wheel]
 packages = ["src/etrain_schema"]
-

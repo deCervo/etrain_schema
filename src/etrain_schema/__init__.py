@@ -10,9 +10,12 @@ except ImportError:  # Python <3.8 compatibility fallback
 
 from .classroom_summary import ClassroomSummary
 from .department.analysis import DepartmentAnalysis
+from .department.graded import GradedIRTDepartmentAnalysis, GradedIRTDepartmentReport
 from .department.report import DepartmentReport
+from .learning_progress import DepartmentLearningProgress, LearningProgress
 from .training_summary import TrainingSummary
 from .user_summary.analysis import UserSummaryAnalysis
+from .user_summary.graded import GradedIRTUserSummaryAnalysis, GradedIRTUserSummaryReport
 from .user_summary.report import UserSummaryReport
 
 try:
@@ -25,6 +28,12 @@ __all__ = [
     "TrainingSummary",
     "DepartmentAnalysis",
     "DepartmentReport",
+    "DepartmentLearningProgress",
+    "LearningProgress",
+    "GradedIRTDepartmentAnalysis",
+    "GradedIRTDepartmentReport",
     "UserSummaryAnalysis",
     "UserSummaryReport",
+    "GradedIRTUserSummaryAnalysis",
+    "GradedIRTUserSummaryReport",
 ]

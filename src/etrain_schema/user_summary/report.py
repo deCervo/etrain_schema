@@ -19,7 +19,18 @@ class PromptTypeComparison(BaseModel):
     coaching_notes: List[str] = Field(default_factory=list)
 
 
+class UserInformation(BaseModel):
+    """Basic user information for report context."""
+
+    user_id: int
+    first_name: Optional[str] = None
+    last_name: Optional[str] = None
+    username: Optional[str] = None
+    department: Optional[str] = None
+
+
 class UserSummaryReport(BaseModel):
+    user: UserInformation
     user_summary: str
     strengths: List[InsightItem]
     weaknesses: List[InsightItem]
