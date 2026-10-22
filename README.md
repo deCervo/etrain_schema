@@ -80,3 +80,10 @@ npm pack                    # optional, creates the tarball for distribution
 - Run `pytest` or `ruff check .` as needed.
 - `npm run build:ts` regenerates the declaration bundle inside `dist/`.
 - Commit the updated `dist/` artifacts before publishing/installing via npm.
+
+
+Version 0.2.1 adds optional `movement_counts` to department learning progress. These retain
+statistical category keys and add `positive_movement` and `negative_movement`
+for display. Original `classification_counts` are unchanged; older reports omit
+the optional field. Install `v0.2.1` or later in Django before deploying consumers that require
+movement counts.

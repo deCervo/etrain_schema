@@ -98,3 +98,22 @@ def test_graded_department_report_requires_privacy_safe_progress():
                 ],
             }
         )
+
+
+def test_department_movement_counts_are_optional_and_survive_serialization():
+    payload = {
+        "calibration_version": "cal-1",
+        "active_officer_count": 8,
+        "officers_with_established_baselines": 8,
+        "classification_counts": {"improving": 1, "no_clear_change": 7},
+        "evidence_strength_distribution": {"established": 8},
+        "response_coverage": {"qualified_responses": 100, "total_scoreable_responses": 120, "skipped_responses": 20},
+    }
+    assert DepartmentLearningProgress.model_validate(payload).movement_counts is None
+    payload["movement_counts"] = {"improving": 1, "positive_movement": 5, "negative_movement": 1, "no_clear_change": 1}
+    saved = DepartmentLearningProgress.model_validate(payload).model_dump()
+    assert saved["movement_counts"]["positive_movement"] == 5
+    assert saved["classification_counts"]["no_clear_change"] == 7
+    payload["movement_counts"]["positive_movement"] = -1
+    with pytest.raises(ValueError):
+        DepartmentLearningProgress.model_validate(payload)

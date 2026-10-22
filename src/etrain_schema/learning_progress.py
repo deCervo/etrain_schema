@@ -58,6 +58,13 @@ class ClassificationCounts(BaseModel):
     baseline_forming: int = Field(default=0, ge=0)
 
 
+class MovementCounts(ClassificationCounts):
+    """Display categories; directional movement is not confirmed change."""
+
+    positive_movement: int = Field(default=0, ge=0)
+    negative_movement: int = Field(default=0, ge=0)
+
+
 class EvidenceStrengthCounts(BaseModel):
     baseline_forming: int = Field(default=0, ge=0)
     developing: int = Field(default=0, ge=0)
@@ -83,6 +90,7 @@ class AggregateTagProgress(BaseModel):
 class DepartmentLearningProgress(BaseModel):
     calibration_version: str
     active_officer_count: int = Field(..., ge=0)
+    movement_counts: Optional[MovementCounts] = None
     officers_with_established_baselines: int = Field(..., ge=0)
     classification_counts: ClassificationCounts
     evidence_strength_distribution: EvidenceStrengthCounts
