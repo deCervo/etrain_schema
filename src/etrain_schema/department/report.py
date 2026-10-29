@@ -53,6 +53,7 @@ class PromptTypeOutlierReport(BaseModel):
 
 
 class PromptTypeComparisonReport(BaseModel):
+    paired_user_count: Optional[int] = Field(default=None, ge=0)
     average_difference_pct: float
     summary: str
     outliers: List[PromptTypeOutlierReport]

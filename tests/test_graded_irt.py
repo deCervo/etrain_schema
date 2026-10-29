@@ -139,3 +139,12 @@ def test_department_classification_usernames_round_trip(usernames):
     payload["classification_usernames"] = {"improving": [{"first_name": "Not a username"}]}
     with pytest.raises(ValueError):
         DepartmentLearningProgress.model_validate(payload)
+
+
+def test_department_report_snapshot_is_optional_and_records_all_user_scope():
+    from etrain_schema.department.graded import DepartmentReportSnapshot, GradedIRTDepartmentReport
+    from etrain_schema.learning_progress import DepartmentLearningProgress
+    assert GradedIRTDepartmentReport.model_fields["report_snapshot"].default is None
+    assert DepartmentLearningProgress.model_fields["selected_officer_count"].default is None
+    snapshot = DepartmentReportSnapshot(active_only=False, captured_at="2026-10-29T16:00:00Z", user_count=16)
+    assert snapshot.model_dump() == {"active_only": False, "captured_at": "2026-10-29T16:00:00Z", "user_count": 16}

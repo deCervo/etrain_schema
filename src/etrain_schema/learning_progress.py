@@ -97,6 +97,7 @@ class ClassificationUsernames(BaseModel):
 class DepartmentLearningProgress(BaseModel):
     calibration_version: str
     active_officer_count: int = Field(..., ge=0)
+    selected_officer_count: Optional[int] = Field(default=None, ge=0)
     classification_usernames: Optional[ClassificationUsernames] = None
     movement_counts: Optional[MovementCounts] = None
     officers_with_established_baselines: int = Field(..., ge=0)

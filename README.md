@@ -96,3 +96,12 @@ contract. Older reports may omit the field or use null; an empty list means no
 officers in that classification. Existing cohort-suppression rules are unchanged.
 Install v0.2.2 in Django before deploying the
 report feature; version 0.2.1 does not preserve these lists during normalization.
+
+Version 0.2.3 report snapshots add optional `report_snapshot` metadata to graded
+department reports (`active_only`, ISO capture time, selected user count) and
+`selected_officer_count` to department learning progress. Legacy reports may
+omit both. Active count remains the actual number of active officers; the
+selected count also includes inactive officers for all-user reports. These
+fields require v0.2.3 installed before backend deployment. Optional
+`paired_user_count` identifies unavailable prompt-type comparisons without
+misrepresenting missing data as a measured zero.
