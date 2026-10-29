@@ -87,9 +87,17 @@ class AggregateTagProgress(BaseModel):
     evidence_strength_distribution: EvidenceStrengthCounts
 
 
+class ClassificationUsernames(BaseModel):
+    """Backend-only username lists for authorized department reports."""
+
+    improving: List[str] = Field(default_factory=list)
+    declining: List[str] = Field(default_factory=list)
+
+
 class DepartmentLearningProgress(BaseModel):
     calibration_version: str
     active_officer_count: int = Field(..., ge=0)
+    classification_usernames: Optional[ClassificationUsernames] = None
     movement_counts: Optional[MovementCounts] = None
     officers_with_established_baselines: int = Field(..., ge=0)
     classification_counts: ClassificationCounts

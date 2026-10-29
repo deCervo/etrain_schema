@@ -87,3 +87,12 @@ statistical category keys and add `positive_movement` and `negative_movement`
 for display. Original `classification_counts` are unchanged; older reports omit
 the optional field. Install `v0.2.1` or later in Django before deploying consumers that require
 movement counts.
+
+Version 0.2.2 adds optional `classification_usernames`
+with `improving` and `declining` username lists. These are authoritative backend
+classifications for authorized department reports, not model-inferred identities.
+Only usernames are included; first names and last names are not part of this
+contract. Older reports may omit the field or use null; an empty list means no
+officers in that classification. Existing cohort-suppression rules are unchanged.
+Install v0.2.2 in Django before deploying the
+report feature; version 0.2.1 does not preserve these lists during normalization.

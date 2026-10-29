@@ -117,3 +117,25 @@ def test_department_movement_counts_are_optional_and_survive_serialization():
     payload["movement_counts"]["positive_movement"] = -1
     with pytest.raises(ValueError):
         DepartmentLearningProgress.model_validate(payload)
+
+
+@pytest.mark.parametrize("usernames", [None, {}, {"improving": ["Officer_7", "alpha"], "declining": ["bravo"]}])
+def test_department_classification_usernames_round_trip(usernames):
+    payload = {
+        "calibration_version": "cal-1",
+        "active_officer_count": 8,
+        "officers_with_established_baselines": 8,
+        "classification_counts": {"improving": 2, "declining": 1},
+        "evidence_strength_distribution": {"established": 8},
+        "response_coverage": {"qualified_responses": 100, "total_scoreable_responses": 120, "skipped_responses": 20},
+    }
+    assert DepartmentLearningProgress.model_validate(payload).classification_usernames is None
+    payload["classification_usernames"] = usernames
+    saved = DepartmentLearningProgress.model_validate(payload).model_dump()
+    if usernames is None:
+        assert saved["classification_usernames"] is None
+    else:
+        assert saved["classification_usernames"] == {"improving": [], "declining": [], **usernames}
+    payload["classification_usernames"] = {"improving": [{"first_name": "Not a username"}]}
+    with pytest.raises(ValueError):
+        DepartmentLearningProgress.model_validate(payload)
